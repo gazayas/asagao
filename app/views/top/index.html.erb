@@ -1,0 +1,29 @@
+<% @articles.each do |article| %>
+  <h2><%= article.title %></h2>
+  <p><%= truncate(article.body, length: 80) %>
+    <%= link_to "もっと読む", article %></p>
+<% end %>
+
+<!-- 7.4 までのコード -->
+<!--
+<% 5.times do |x| %>
+  <h2>見出し</h2>
+  <p>ここに本文が入ります。ここに本文が入ります。ここに本文が入ります。ここに本文が入ります。
+    <%= link_to "もっと読む", "#" %></p>
+<% end %>
+-->
+
+
+
+<!-- 以降は、モックアップを作った前（１章〜３章）の情報です -->
+
+<!-- <h1><%= @message %></h1> -->
+
+<!--
+<p>:about というシンボルは routes.rb に宣言されて、<br/>
+  実際に html.erb で呼び出すことができる
+</p>
+-->
+
+<!-- routes.rb で　「as :about」 を宣言したから、その http メソッドが行われる。。。んやと思う -->
+<!-- <p><%= link_to "情報", :about %></p> -->

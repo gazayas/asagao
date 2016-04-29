@@ -1,0 +1,30 @@
+
+<!-- html の <img src="" /> ってやつが使いたい時は、次のメソッドを使う。 -->
+<!-- nara.png なんですけど、それは app/assets/images ってところに入ってる -->
+
+
+<p><%= image_tag("nara.jpg", id: "naraImg", alt: "奈良の山") %><p>
+
+<!-- また属性が追加した時は、ハッシュで宣言するらしい -->
+<!-- 例えば class: "img", id: "naraImg" 。。。かな -->
+<!-- size: "1000x1000", align: "center, center" -->
+<!-- stylesheets を見てみ -->
+
+
+
+
+<!-- これもいけるで -->
+<p>次の画像はリンクです </p>
+<p><%= link_to(image_tag("nara.jpg", size: "500x300", alt: "リンク"), root_path) %></p>
+
+
+
+
+
+<!-- これは html.erb だから、普通の html のタグが使いたい時は、こうやるらしい -->
+<!-- （二つのメソッドがあって、一つ目は tag() と二つ目は content_tag()） -->
+
+<%= tag(:br) %>
+<%= content_tag(:p, class: "p1") do %>
+こんにちは。ページのソースコードを見てください。
+<% end %>

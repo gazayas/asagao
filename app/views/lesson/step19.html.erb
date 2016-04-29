@@ -1,0 +1,12 @@
+<!-- 繰り返しをテーブルで使えるらしい。すっっっごーく便利かもしれない -->
+<!-- <ol> でも <ul> でも凄く便利かもしれない -->
+
+
+<table border="1" cellpadding="7">
+  <% @items.each do |key, val| %>
+    <tr>
+      <th><%= key %></th>
+      <td style="text-align: right"><%= number_with_delimiter(val) %>円</td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,13 @@
+<p> <%= link_to "ホーム", root_path %> </p>
+<!-- root_path は 「/」 を返すメソッドらしい（html の）-->
+
+<!-- 普通は <a href="" class="link">リンク</a> でするけど、
+    link_to を使って class が宣言したいなら、class: "link" みたいな感じで宣言する -->
+
+<!-- また、<a> じゃなくて特別の html のタグ（例えば <span>）が加えたい時は、
+    ブロックを link_to メソッドに渡す
+    でも、 link_to_unless_current でしか使えないらしい。。。。。 -->
+
+<p><%= link_to_unless_current("またホーム", root_path) do %></p>
+  <span class="spanClass">リンク</p>
+<% end %>

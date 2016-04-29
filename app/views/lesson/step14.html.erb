@@ -1,0 +1,20 @@
+<p>
+  数字にカンマを入れたい時は：<br/>
+  人口は<%= number_with_delimiter(@population) %>
+  <!-- この number_with_delimiter と link_to みたいなやつはレーリズの
+    ActionView のメソッドでもう既に Ruby においてない -->
+</p>
+
+
+<p>
+  truncate("...", length:文字数) を使ったらいいかも<br/>
+  例えばブログがあったら。。。ブログの最初を省略するためにこうやればいい：<br/><br/><br/>
+
+  <% blog = "もう夏に入って暑くなってきました。熱中症にならないように心がけましょう" %>
+  <% blog2 = "今年の夏、七月に、アメリカに帰っていく。その時はたくさんのおいしい食べ物が食べたい" %>
+
+  <%= truncate(blog, length:10) %><br/>
+  <%= link_to (truncate(blog2, length:10)), "http://qiita.com/wada811/items/cd952471b75355079ca2", :target => "_blank" %><br/>
+  <%# いいですね。もうすでに「．．．」が入ってる。 %>
+
+</p>

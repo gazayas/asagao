@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+  <title><%= page_title %></title> <!-- これ！便利 --> <!-- ところで、この部分を application_helper.rb に書いてあります -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <%=render "shared/header" %>
+    </div>
+    <div id="content">
+      <% if flash.notice %>
+        <p class="notice"><%= flash.notice %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+    <div id="sidebar">
+      <%= render "shared/sidebar" %>
+    </div>
+    <div id="footer">
+      <%= render "shared/footer" %>
+    </div>
+  </div>
+<!-- コントローラが処理をして、このファイルに送る。 -->
+<!-- そして、その処理された情報はこの <%= yield の中に埋め込まれるらしいです -->
+<!-- これを sanbika でいけたらめっちゃくちゃ便利やろう -->
+
+</body>
+</html>
