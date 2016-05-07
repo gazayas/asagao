@@ -1,6 +1,8 @@
 class Member < ActiveRecord::Base
 	include EmailAddressChecker
 
+	has_many :entries, dependent: :destroy # 9.2 で追加した
+
 	# validates 文を書いても、view の中にエラーメッセージを表示しないと
 	# それは配列として出てくると思う
 
