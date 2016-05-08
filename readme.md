@@ -24,7 +24,14 @@ variable は uninitialized constant になってしまうバッグが発生し�
 エラーページのテストを実装する前に、<br>
 factory_girl のコードには問題は全然なく、<br>
 test_helper.rb の login_as(member) というメソッドも上手く処理されていましたが、<br>
-現在は動けないから解決する方法を工夫
+現在は動けないから解決する方法を工夫<br/><br/>
+
+後は、9.2 で $ rake db:seed をしようとしたら、ダメだった<br/>
+なぜかというと、この章では %w(Taro Hana Daredare).each do |name|<br/>
+みたいな感じでMember.find_by(name: name) をしようとしていたけど、<br/>
+前の章ではarticlesのモデルを作って、memberのシードデータをJohnに変えたわけです(-____-)<br/>
+ややこしいですね。それなのに、またTaroさんとかHanaさんとかで名前を取得しようとしてる。<br/>
+
 
 ##その他
 1. ページネーションを使うには`will_paginate`があったけど、<br>

@@ -25,10 +25,12 @@ Rails.application.routes.draw do
    resources :members do
       # これは検索の機能を加える
       collection {get "search"}
+      resources :entries, only: [:index] # 9.2 で resources :entries と一緒に入れた
    end
 
    # 第７章７.３で追加されました
    resources :articles
+   resources :entries # 9.2 で resources :entries, only: [:index] と一緒に入れた
 
    # 8.2 で追加した
    # resource と session は単数系のことを気をつけてください

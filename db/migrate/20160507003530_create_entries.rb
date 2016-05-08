@@ -13,6 +13,5 @@ class CreateEntries < ActiveRecord::Migration
     end
 
     add_index :entries, :member_id
-
   end
 end

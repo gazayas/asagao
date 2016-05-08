@@ -2,7 +2,7 @@
 # それをrequireメソッドで実行するものです。
 # 本番モードでは db/seeds/productionフォルダの下のファイルを実行します。
 
-table_names = %w(members articles)
+table_names = %w(members articles entries)
 
 table_names.each do |table_name|
   path = Rails.root.join("db/seeds", Rails.env, table_name + ".rb")
