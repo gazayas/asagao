@@ -6,7 +6,7 @@ body =
   "しかし、その裏、畠山の満塁弾に宮本のソロで大逆転！\n" +
   "しかし７回に押元が大乱調、栗原に満塁弾をお返しされてしまいました。"
 
-  %w(John1 John2 John3).each do |name|
+  %w(Taro Jiro Hana).each do |name|
     member = Member.find_by(name: name)
     0.upto(9) do |idx|
       Entry.create(
