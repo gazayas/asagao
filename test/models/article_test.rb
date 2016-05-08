@@ -62,7 +62,7 @@ class ArticleTest < ActiveSupport::TestCase
     assert_includes articles, article4, "expiredがnilの場合"
   end
 
-
+=begin
 　# readable_for スコープのチェック
   test "readable_for" do
     article1 = FactoryGirl.create(:article)
@@ -75,8 +75,7 @@ class ArticleTest < ActiveSupport::TestCase
     assert_includes articles, article1, "現在の記事が含まれる"
     assert_includes articles, article2, "会員限定記事が含まれる"
   end
-
-
+=end
 
 
 
