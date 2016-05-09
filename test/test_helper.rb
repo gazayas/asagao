@@ -20,4 +20,8 @@ class ActiveSupport::TestCase
     session.delete(:member_id)
   end
 
+  def uploaded_file(fname, type)
+    Rack::Test::UploadedFile.new(Rails.root.join("test/factories", fname), type, true)
+  end
+
 end

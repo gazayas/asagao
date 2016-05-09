@@ -17,12 +17,19 @@ class MembersController < ApplicationController
 
    def show
     @member = Member.find(params[:id])
+    if params[:format].in?(["jpg", "png", "gif"])
+      send_image
+    else
+      render "show"
+    end
    end
 
    def new
     @member = Member.new(birthday: Date.new(1980, 1, 1))
     # 予めに、誕生日の原点を置いとく (Date.new(1980, 1, 1) の部分)
     # 普通は @member = Member.new かもしれない
+
+    @member.build_image # 9.3 で追加した
    end
 
    # 会員の新規登録
@@ -37,6 +44,7 @@ class MembersController < ApplicationController
 
    def edit
     @member = Member.find(params[:id])
+    @member.build_image unless @member.image # 9.3 で追加した
    end
 
    def update
@@ -60,7 +68,19 @@ class MembersController < ApplicationController
      attrs = [:number, :name, :full_name, :gender, :birthday, :email, :password, :password_confirmation]
      # 管理者だけが管理者の情報を edit で編集できるように：
      attrs << :administrator if current_member.administrator?
+     attrs << {image_attributes: [:_destroy, :id, :uploaded_image]} # 9.3 で追加した
        params.require(:member).permit(attrs)
+   end
+
+   def send_image
+     if @member.image.present?
+       # バイナリーデータを送信するときは、renderメソッドの代わりにsend_dataメソッドを使います。
+       send_data @member.image.data,
+       type: @member.image.content_type, disposition: "inline"
+       # disposition: "inline" というのは、ブラウザーがダウンロード画面を表示しないためらしい
+     else
+       raise NotFound
+     end
    end
 
 end

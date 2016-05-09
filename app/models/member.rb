@@ -2,6 +2,9 @@ class Member < ActiveRecord::Base
 	include EmailAddressChecker
 
 	has_many :entries, dependent: :destroy # 9.2 で追加した
+	has_one :image, class_name: "MemberImage", dependent: :destroy # 9.3 で追加した
+	accepts_nested_attributes_for :image, allow_destroy: true # 9.3 の最後の節で追加した
+	# これで、image のデータを member のフォームの中で定義できるらしい
 
 	# validates 文を書いても、view の中にエラーメッセージを表示しないと
 	# それは配列として出てくると思う
