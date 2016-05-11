@@ -55,9 +55,29 @@ class EntriesController < ApplicationController
     redirect_to :entries, notice: "記事を削除しました。"
   end
 
+  def like
+    @entry = Entry.published.find(params[:id])
+    current_member.voted_entries << @entry
+    # publishedスコープで下書き以外の記事を取り出し、
+    # Memberモデルのvoted_entriesに対して << で関連付けます。
+    redirect_to @entry, notice: "投票しました。"
+  end
+
+  def unlike
+    current_member.voted_entries.destroy(Entry.find(params[:id]))
+    redirect_to :voted_entries, notice: "削除しました。"
+  end
+
+  def voted
+    @entries = current_member.voted_entries.published.order("votes.created_at DESC")
+                .paginate(page: params[:page], per_page: 15)
+  end
+
   private
   def entry_params
     params.require(:entry).permit(:title, :body, :posted_at, :status)
   end
+
+
 
 end

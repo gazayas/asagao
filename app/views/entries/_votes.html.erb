@@ -1,0 +1,11 @@
+<p class="vote">
+  <% @entry.voters.order("votes.created_at").each do |voter| %>
+    <!-- データベースは多対多になってるので、単にcreated_atを書くと、
+  データベースはエラーを出すかもしれない。だから"votes.created_at"という風になってる -->
+    ★<%= voter.name %>
+  <% end %>
+
+  <% if current_member && current_member.votable_for?(@entry) %>
+    <%= link_to "★いいね", [:like, @entry], method: :patch, class: "button" %>
+  <% end %>
+</p>

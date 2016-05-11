@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
    # 第７章７.３で追加されました
    resources :articles
-   resources :entries # 9.2 で resources :entries, only: [:index] と一緒に入れた
+   resources :entries do # 9.2 で resources :entries, only: [:index] と一緒に入れた
+     #9.4 で上行の do とこのブロックを追加した
+     member {patch "like", "unlike"}
+     collection {get "voted"}
+   end
 
    # 8.2 で追加した
    # resource と session は単数系のことを気をつけてください

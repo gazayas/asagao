@@ -4,6 +4,11 @@ class Entry < ActiveRecord::Base
   # この２つがないと、Railsはentriesテーブルにauthor_idというカラムがあり、
   # Authorという名前のモデルを参照しているのだと誤解してしまいます。
 
+  has_many :votes, dependent: :destroy
+  has_many :voters, through: :votes, source: :member
+  # has_many through で関連付けの名前を変えたい場合は、sourceオプションにモデル名を指定します。
+  
+
   STATUS_VALUES = %w(draft member_only public)
 
   validates :title, presence: true, length: {maximum: 200}

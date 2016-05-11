@@ -2,6 +2,11 @@ class Member < ActiveRecord::Base
 	include EmailAddressChecker
 
 	has_many :entries, dependent: :destroy # 9.2 で追加した
+
+	# 9.4 で追加した
+	has_many :votes, dependent: :destroy
+	has_many :voted_entries, through: :votes, source: :entry
+
 	has_one :image, class_name: "MemberImage", dependent: :destroy # 9.3 で追加した
 	accepts_nested_attributes_for :image, allow_destroy: true # 9.3 の最後の節で追加した
 	# これで、image のデータを member のフォームの中で定義できるらしい
@@ -46,6 +51,13 @@ class Member < ActiveRecord::Base
 			self.hashed_password = BCrypt::Password.create(val)
 		end
 		@password = val
+	end
+
+	# 9.4 で追加した
+	# 自分の記事じゃない、そしてまだ投票したことがなければ、
+	# 投票ができること
+	def votable_for?(entry)
+		entry && entry.author != self && !votes.exists?(entry_id: entry.id)
 	end
 
 
