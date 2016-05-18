@@ -24,6 +24,7 @@ class MembersController < ApplicationController
     end
    end
 
+=begin 次のは要らないらしい
    def new
     @member = Member.new(birthday: Date.new(1980, 1, 1))
     # 予めに、誕生日の原点を置いとく (Date.new(1980, 1, 1) の部分)
@@ -82,5 +83,5 @@ class MembersController < ApplicationController
        raise NotFound
      end
    end
-
+=end
 end
