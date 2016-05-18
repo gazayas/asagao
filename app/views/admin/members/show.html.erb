@@ -1,0 +1,12 @@
+<%= @page_title = "会員の詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<p><%= link_to "編集", [:edit, :admin, @member]%></p>
+
+<%= l(Time.now, format: :long) %><br/> <!-- i18n に関係がある -->
+<%= l(Time.now, format: :short) %><br/>
+<%= l(Time.now, format: :default) %><br/>
+<!-- 要するにできるだけ国際化を作ること -->
+
+<%= render "body" %>

@@ -22,14 +22,14 @@ Rails.application.routes.draw do
 
 
    # $ rails g controller members を行ったのでこれを追加する
-   resources :members do
+   resources :members, only: [:index, :show] do # 9.5でまたいじった
       # これは検索の機能を加える
       collection {get "search"}
       resources :entries, only: [:index] # 9.2 で resources :entries と一緒に入れた
    end
 
    # 第７章７.３で追加されました
-   resources :articles
+   resources :articles, only: [:index, :show] # 9.5でonly:の部分から追加した
    resources :entries do # 9.2 で resources :entries, only: [:index] と一緒に入れた
      #9.4 で上行の do とこのブロックを追加した
      member {patch "like", "unlike"}
@@ -42,6 +42,16 @@ Rails.application.routes.draw do
    resource :session, only: [:create, :destroy]
    # resource :account, only: [:show, :edit, :update]
    resource :account
+
+   # 9.5 で追加した
+   namespace :admin do
+     root to: "top#index"
+     resources :members do
+       collection {get "search"}
+     end
+     resources :articles
+   end
+
    match "*anything" => "top#not_found", via: [:get, :post, :patch, :delete]
    # これは、「設定されていないパスはすべてTopControllerのnot_foundアクションの呼び出しにする」
    # というものです。
