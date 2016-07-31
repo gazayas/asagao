@@ -8,7 +8,7 @@ ror のアプリの作り方を勉強するための教科書です。
 ところどころにコメントを書いたので<br>
 短い解説も参照にしてください
 
-この教科書について<a href="https://www.github.com/gazayas/asagao" target="_blank">Qiita</a>の記事も書いてみたので、
+この教科書について<a href="http://qiita.com/gazayas/items/4eec2b6759d58441d8bb" target="_blank">Qiitaの記事</a>も書いてみたので、
 ぜひ読んでみてください
 
 ##残っている学習項目： <br>
